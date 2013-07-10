@@ -56,11 +56,19 @@ Finally, here is a quick example of how to use it.  Check out the example in the
 
     UIViewController *modalVC = (UIViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"ModalViewController"];
     modalVC.delegate = self;  // This is not necessary - is good to just let your main view handle presenting/dismissing
-    [self presentPushBackController:modalVC animated:YES];
+    [self presentPushBackController:modalVC];
+    /**
+     * Or...
+     * [self presentPushBackController:modalVC withCompletion:^{ someMagicMethodHere() }];
+     */
 }
 
 -(void)pushBackVCDelegateShouldDismissController:(id)controller {
     [self dismissPushBackController:controller];
+    /**
+     * Or...
+     * [self dismissPushBackController:modalVC withCompletion:^{ someMagicMethodHere() }];
+     */
     controller.delegate = nil;
 }
 @end
