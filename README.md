@@ -47,14 +47,19 @@ Finally, here is a quick example of how to use it.  Check out the example in the
 
 #### MainViewController.m
 ```objective-c
+
 #import "MainViewController.h"
+#import "ModalViewController.h"
 #import "UIViewController+eLBeePushBackController.h"
+
+@interface MainViewController() <ModalVCDelegate>
+@end
 
 @implementation MainViewController
 
 -(IBAction)showAction:(id)sender {
 
-    UIViewController *modalVC = (UIViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"ModalViewController"];
+    ModalViewController *modalVC = (ModalViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"ModalViewController"];
     modalVC.delegate = self;  // This is not necessary - is good to just let your main view handle presenting/dismissing
     [self presentPushBackController:modalVC];
     /**
@@ -63,7 +68,7 @@ Finally, here is a quick example of how to use it.  Check out the example in the
      */
 }
 
--(void)pushBackVCDelegateShouldDismissController:(id)controller {
+-(void)pushBackVCDelegateShouldDismissController:(ModalViewController)controller {
     [self dismissPushBackController:controller];
     /**
      * Or...
@@ -79,23 +84,23 @@ Finally, here is a quick example of how to use it.  Check out the example in the
 
 #import <UIKit/UIKit.h>
 
-@class SecondViewController;
-@protocol SecondVCDelegate <NSObject>
--(void)pushBackVCDelegateShouldDismissController:(SecondViewController *)controller;
+@class ModalViewController;
+@protocol ModalVCDelegate <NSObject>
+-(void)pushBackVCDelegateShouldDismissController:(ModalViewController *)controller;
 @end
 ```
 #### ModalViewController.m
 ```objective-c
 
-@interface SecondViewController : UIViewController
-@property (nonatomic, weak) id <SecondVCDelegate> delegate;
+@interface ModalViewController : UIViewController
+@property (nonatomic, weak) id <ModalVCDelegate> delegate;
 -(IBAction)dismissAction;
 @end
 ModalViewController.m
 
-#import "SecondViewController.h"
+#import "ModalViewController.h"
 
-@implementation SecondViewController
+@implementation ModalViewController
 
 -(IBAction)dismissAction {
     [self.delegate pushBackVCDelegateShouldDismissController:self];
