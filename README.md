@@ -142,4 +142,5 @@ Thanks, hope you find this useful!!
 
 ## Resources
 [KNSemiModal](https://github.com/kentnguyen/KNSemiModalViewController)
+
 [Stackoverflow - UIView Cloning](http://stackoverflow.com/a/13664732)
