@@ -16,7 +16,7 @@ typedef void(^eLBeePBCompletionBlock)(void);
 
 typedef NS_ENUM(NSInteger, keLBeePBVCSize) {
     keLBeePBVCSizeOffset = 40,
-    keLBeePBVCSizeOfPresentedView = 388
+    keLBeePBVCSizeOfPresentedView = 328
 };
 
 typedef NS_ENUM(NSInteger, keLBeePBVCTag) {

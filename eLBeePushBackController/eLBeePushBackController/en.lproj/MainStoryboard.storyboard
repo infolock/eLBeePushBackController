@@ -14,13 +14,13 @@
                         <subviews>
                             <imageView clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.30000000000000016" contentMode="scaleToFill" image="coder.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="IQe-72-R5G"/>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="skG-bX-t3o">
-                                <color key="backgroundColor" white="0.66666666666666663" alpha="1" colorSpace="calibratedWhite"/>
+                                <color key="backgroundColor" red="0.1333333333" green="0.62352941179999999" blue="0.7725490196" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="DNo-eh-g2r"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="c`mon - PUSH ME!">
-                                    <color key="titleColor" white="0.0" alpha="1" colorSpace="calibratedWhite"/>
+                                <state key="normal" title="Push">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <state key="highlighted">
@@ -33,11 +33,11 @@
                         </subviews>
                         <color key="backgroundColor" red="0.58629047440000004" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
-                            <constraint firstItem="skG-bX-t3o" firstAttribute="centerY" secondItem="IQe-72-R5G" secondAttribute="centerY" type="default" id="7Gp-f7-vMQ"/>
-                            <constraint firstItem="skG-bX-t3o" firstAttribute="centerY" secondItem="3" secondAttribute="centerY" type="default" id="I4J-eK-UTA"/>
+                            <constraint firstItem="skG-bX-t3o" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="N8K-aC-q0E"/>
                             <constraint firstItem="IQe-72-R5G" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="RJ4-Me-qQH"/>
                             <constraint firstItem="IQe-72-R5G" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="UnZ-QA-2SK"/>
                             <constraint firstItem="skG-bX-t3o" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="bNW-nC-3Nb"/>
+                            <constraint firstItem="IQe-72-R5G" firstAttribute="bottom" secondItem="3" secondAttribute="bottom" type="default" id="gTo-hw-Zqt"/>
                             <constraint firstAttribute="trailing" secondItem="skG-bX-t3o" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="mZG-ze-WAE"/>
                             <constraint firstItem="IQe-72-R5G" firstAttribute="top" secondItem="3" secondAttribute="top" type="default" id="paG-Ap-u6O"/>
                         </constraints>
@@ -58,12 +58,12 @@
                         <subviews>
                             <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" alpha="0.40000000000000013" contentMode="center" image="vader.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="Sz7-VY-dCi"/>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="kRb-3u-6cA">
-                                <color key="backgroundColor" red="0.1333333333" green="0.62352941179999999" blue="0.7725490196" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="backgroundColor" red="0.80000000000000004" green="0.40000000000000002" blue="0.20000000000000001" alpha="1" colorSpace="calibratedRGB"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="44" id="g5A-N6-6LS"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
-                                <state key="normal" title="Dismiss Me!">
+                                <state key="normal" title="Dismiss">
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                     <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
