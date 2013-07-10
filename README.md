@@ -144,3 +144,10 @@ Thanks, hope you find this useful!!
 [KNSemiModal](https://github.com/kentnguyen/KNSemiModalViewController)
 
 [Stackoverflow - UIView Cloning](http://stackoverflow.com/a/13664732)
+
+
+## Contact Info
+
+Website: [http://phpadvocate.com/](http://phpadvocate.com/)
+LinkedIn: [http://www.linkedin.com/in/jhibbard/](http://www.linkedin.com/in/jhibbard/)
+Twitter: [https://twitter.com/infolock](https://twitter.com/infolock)
