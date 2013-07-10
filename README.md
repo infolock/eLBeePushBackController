@@ -53,29 +53,39 @@ Finally, here is a quick example of how to use it.  Check out the example in the
 #import "UIViewController+eLBeePushBackController.h"
 
 @interface MainViewController() <ModalVCDelegate>
+
 @end
 
 @implementation MainViewController
 
--(IBAction)showAction:(id)sender {
+-(IBAction)presentPBVCBtn:(id)sender {
+    ModalViewController *controller = (ModalViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"ModalViewControllerSBID"];
+    controller.delegate = self;  // This is not necessary - is good to just let your main view handle presenting/dismissing
 
-    ModalViewController *modalVC = (ModalViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"ModalViewControllerSBID"];
-    modalVC.delegate = self;  // This is not necessary - is good to just let your main view handle presenting/dismissing
-    [self presentPushBackController:modalVC];
-    /**
-     * Or...
-     * [self presentPushBackController:modalVC withCompletion:^{ someMagicMethodHere() }];
-     */
+    [self presentPushBackController:controller];
+
+    /*
+    // Example using withCompletion
+    [self presentPushBackController:controller withCompletion:^{
+        NSLog(@"The View was pushed and has completed!");
+    }];
+    */
 }
 
--(void)pushBackVCDelegateShouldDismissController:(ModalViewController)controller {
-    [self dismissPushBackController:controller];
-    /**
-     * Or...
-     * [self dismissPushBackController:modalVC withCompletion:^{ someMagicMethodHere() }];
-     */
+-(void)pushBackVCDelegateShouldDismissController:(ModalViewController *)controller {
+
     controller.delegate = nil;
+
+    [self dismissPushBackController:controller];
+    /*
+     // Example using withCompletion
+     [self dismissPushBackController:controller withCompletion:^{
+     NSLog(@"The View was pushed and has completed!");
+     }];
+     */
 }
+@end
+
 @end
 ```
 
@@ -85,14 +95,22 @@ Finally, here is a quick example of how to use it.  Check out the example in the
 #import <UIKit/UIKit.h>
 
 @class ModalViewController;
+
 @protocol ModalVCDelegate <NSObject>
 -(void)pushBackVCDelegateShouldDismissController:(ModalViewController *)controller;
 @end
 
+
 @interface ModalViewController : UIViewController
+
 @property (nonatomic, weak) id <ModalVCDelegate> delegate;
+
 @end
+
+
 ```
+
+
 #### ModalViewController.m
 ```objective-c
 
