@@ -88,17 +88,20 @@ Finally, here is a quick example of how to use it.  Check out the example in the
 @protocol ModalVCDelegate <NSObject>
 -(void)pushBackVCDelegateShouldDismissController:(ModalViewController *)controller;
 @end
+
+@interface ModalViewController : UIViewController
+@property (nonatomic, weak) id <ModalVCDelegate> delegate;
+@end
 ```
 #### ModalViewController.m
 ```objective-c
 
-@interface ModalViewController : UIViewController
-@property (nonatomic, weak) id <ModalVCDelegate> delegate;
+#import "ModalViewController.h"
+
+@interface ModalViewController()
 -(IBAction)dismissAction;
 @end
-ModalViewController.m
 
-#import "ModalViewController.h"
 
 @implementation ModalViewController
 
