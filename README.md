@@ -56,11 +56,11 @@ Finally, here is a quick example of how to use it.  Check out the example in the
 
     UIViewController *modalVC = (UIViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"ModalViewController"];
     modalVC.delegate = self;  // This is not necessary - is good to just let your main view handle presenting/dismissing
-    [self presentSemiModal:modalVC animated:YES];
+    [self presentPushBackController:modalVC animated:YES];
 }
 
 -(void)pushBackVCDelegateShouldDismissController:(id)controller {
-    [self dismissSemiModalVC:controller];
+    [self dismissPushBackController:controller];
     controller.delegate = nil;
 }
 @end
@@ -73,7 +73,7 @@ Finally, here is a quick example of how to use it.  Check out the example in the
 
 @class SecondViewController;
 @protocol SecondVCDelegate <NSObject>
--(void)secondViewController:(SecondViewController *)controller didRequestToBeDismissed:(BOOL)dismiss;
+-(void)pushBackVCDelegateShouldDismissController:(SecondViewController *)controller;
 @end
 ```
 #### ModalViewController.m
@@ -90,7 +90,7 @@ ModalViewController.m
 @implementation SecondViewController
 
 -(IBAction)dismissAction {
-    [self.delegate secondViewController:self didRequestToBeDismissed:YES];
+    [self.delegate pushBackVCDelegateShouldDismissController:self];
 }
 
 @end
