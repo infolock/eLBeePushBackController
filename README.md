@@ -5,7 +5,7 @@ eLBeePushBackController
 
 This is a simple UIViewController Category for creating a semi modal / push back transition.
 
-I built this category after trying to determine how to best refine kentnguyen's KNSemiModal category. I was actually going to just make a few changes and then issue a pull request, but after having changed the code so heavily, I've decided to just release it as a spin-off of KNSemiModal instead.
+I built this category after trying to determine how to best refine [kentnguyen's](https://github.com/kentnguyen) [KNSemiModal](https://github.com/kentnguyen/KNSemiModalViewController) category. I was actually going to just make a few changes and then issue a pull request, but after having changed the code so heavily, I've decided to just release it as a spin-off of KNSemiModal instead.
 
 ### Biggest Changes
 
@@ -138,3 +138,8 @@ Finally, here is a quick example of how to use it.  Check out the example in the
 
 
 Thanks, hope you find this useful!!
+
+
+## Resources
+[KNSemiModal](https://github.com/kentnguyen/KNSemiModalViewController)
+[Stackoverflow - UIView Cloning](http://stackoverflow.com/a/13664732)
