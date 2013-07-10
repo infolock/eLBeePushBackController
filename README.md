@@ -59,7 +59,7 @@ Finally, here is a quick example of how to use it.  Check out the example in the
 
 -(IBAction)showAction:(id)sender {
 
-    ModalViewController *modalVC = (ModalViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"ModalViewController"];
+    ModalViewController *modalVC = (ModalViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"ModalViewControllerSBID"];
     modalVC.delegate = self;  // This is not necessary - is good to just let your main view handle presenting/dismissing
     [self presentPushBackController:modalVC];
     /**
