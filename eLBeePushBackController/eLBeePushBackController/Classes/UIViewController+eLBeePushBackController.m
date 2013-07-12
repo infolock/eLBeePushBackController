@@ -88,7 +88,7 @@
 
     if(![target.subviews containsObject:modalView]) {
 
-        CGFloat yPos = self.view.frame.size.height - keLBeePBVCSizeOfPresentedView;
+        CGFloat yPos = self.view.frame.size.height - keLBeeSizePresentedViewHeight;
         CGFloat pushBackViewHeight = modalView.frame.size.height;
         CGRect modelViewFrame = CGRectMake(0, yPos, target.bounds.size.width, pushBackViewHeight);
 

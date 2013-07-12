@@ -23,10 +23,10 @@
     [self presentPushBackController:controller];
 
     /*
-    // Example using withCompletion
-    [self presentPushBackController:controller withCompletion:^{
-        NSLog(@"The View was pushed and has completed!");
-    }];
+        // Example using withCompletion
+        [self presentPushBackController:controller withCompletion:^{
+            NSLog(@"The View was pushed and has completed!");
+        }];
     */
 }
 
@@ -36,10 +36,10 @@
 
     [self dismissPushBackController:controller];
     /*
-     // Example using withCompletion
-     [self dismissPushBackController:controller withCompletion:^{
-     NSLog(@"The View was pushed and has completed!");
-     }];
+         // Example using withCompletion
+         [self dismissPushBackController:controller withCompletion:^{
+         NSLog(@"The View was pushed and has completed!");
+         }];
      */
 }
 @end

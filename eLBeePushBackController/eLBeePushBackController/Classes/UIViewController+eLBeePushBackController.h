@@ -14,8 +14,7 @@ typedef void(^eLBeePBCompletionBlock)(void);
 @interface UIViewController(eLBeePushBackController)
 
 typedef NS_ENUM(NSInteger, keLBeePBVCSize) {
-    keLBeePBVCSizeOffset = 40,
-    keLBeePBVCSizeOfPresentedView = 328
+    keLBeeSizePresentedViewHeight = 328
 };
 
 typedef NS_ENUM(NSInteger, keLBeePBVCTag) {
