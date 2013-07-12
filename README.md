@@ -130,6 +130,7 @@ Finally, here is a quick example of how to use it.  Check out the example in the
 @end
 ```
 
+This is released under the MIT License - checkout LICENSE for more information.
 
 Thanks, hope you find this useful!!
 
