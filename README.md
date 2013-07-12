@@ -3,7 +3,6 @@ eLBeePushBackController
 
 ![ScreenShot 1](screenshot.png)
 
-** Update: This is currently being rewritten - made some silly overkill mistakes here.. **
 
 ## About
 
