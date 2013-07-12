@@ -99,11 +99,13 @@
         [self addOverlayToTarget:target];
         [target addSubview:modalView];
 
+        __block UIView *currentView = self.view;
+        __block CALayer *viewLayer = currentView.layer;
         [self animateViewUsingTransform3DIdentity:YES usingBlock:^(CAAnimation *caAnimation) {
-                [self.view.layer addAnimation:caAnimation forKey:@"pushedBackAnimation"];
+                [viewLayer addAnimation:caAnimation forKey:@"pushedBackAnimation"];
                 [UIView animateWithDuration:0.4 animations:^{
                     modalView.frame = modelViewFrame;
-                    self.view.alpha = 0.5;
+                    currentView.alpha = 0.5;
                 } completion:^(BOOL finished) {
                     if(finished && completion) {
                         completion();
