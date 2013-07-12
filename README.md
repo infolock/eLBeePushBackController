@@ -13,7 +13,7 @@ This code was originally a fork of [kentnguyen's](https://github.com/kentnguyen)
 ### Biggest Changes
 
 * Refactored a lot of the animation code and split things out into more manageable chunks.
-* Added blocks and GCD to improve performance
+* Added blocks and GCD
 * Replaced the screenshot resize for the push back animation transition with just a simple resizing of the main view.
 * Removed a bunch of other logic I wasn't needing
 * Rewrote almsot all of the non-CATransform3DTranslate methods/logic
