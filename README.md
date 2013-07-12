@@ -14,25 +14,25 @@ This code was originally a fork of [kentnguyen's](https://github.com/kentnguyen)
 
 * Refactored a lot of the animation code and split things out into more manageable chunks.
 * Added blocks and GCD to improve performance
-* I replaced the screenshot resize for the push back animation transition with just a simple resizing of the main view.
-* Removed all objc runtime properties as they are not yet needed at this time
-* Overall, reduced the size of the build drastically, which also has added in a bit of a performance bump
-* Disabled user interaction to the background view for now - will probably just have it dismiss when that is tapped eventually.. 
+* Replaced the screenshot resize for the push back animation transition with just a simple resizing of the main view.
+* Removed a bunch of other logic I wasn't needing
+* Rewrote almsot all of the non-CATransform3DTranslate methods/logic
+* Currently, its now just under 220 lines (from 348)
 
 
 ### In Development:
 * I'm working on some new transition styles so that you can choose which transition to use
 
 ### Things I removed:
-* Removed "presentSemiView". Why? Because I never used it and only used this for controllers. I plan to add it back when I need it though ...
-* the Dismiss block for the present methods (temporarily). Going to decide how to handle this later (will probably create a simpe NSNotification call rather than storing it with objc runtime properties)
-* The most important thing I removed was calls to "shouldRasterize" and "rasterizationScale". These 2 calls create awful responses and just aren't worth the little details they offer with this code. I'm not hating on rasterize - just saying - it sucks here =)
-* Removed all of the traversal searches for the parentview. I just personally didn't need it and found it slowed stuff down. If you want it - let me know and I'll add it (or create a pull request!)
-* Removed the shadow layers - again, slowed the animation down and I quite honestly just didn't care if shadows were shown or not
-* All objc_runtime properties (obviously)
-* All of the define methods (replaced the tags with NS_ENUM instead)
+* Removed "presentSemiView"
+* the Dismiss block for the present methods (temporarily).
+* Removed calls to "shouldRasterize" and "rasterizationScale".
+* Removed all of the traversal searches for the parentview.
+* Removed the shadow layers
+* All objc_runtime properties
+* All of the define methods
 * All of the subclasses/categories
-* Removed the "options" param (I never used it personally - if you do - sorry =)
+* Removed the "options" param
 * Removed the screenshot creation
 
 ### Things that I kept/borrowed/whatever from KNSemiModal:
