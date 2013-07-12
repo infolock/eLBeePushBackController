@@ -22,7 +22,6 @@
 		0504C758178CF48B0005B314 /* coder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0504C757178CF48B0005B314 /* coder.jpg */; };
 		0504C75A178CF54C0005B314 /* vader.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0504C759178CF54C0005B314 /* vader.jpg */; };
 		0504C75D178CF64B0005B314 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0504C75C178CF64B0005B314 /* QuartzCore.framework */; };
-		398481E95E71EB7A2AEBDDD5 /* UIView+Clone.m in Sources */ = {isa = PBXBuildFile; fileRef = 39848090BD998FA60AE49EF5 /* UIView+Clone.m */; };
 		398486E150A74D4B12CAE086 /* UIViewController+eLBeePushBackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 398488A175BD0C830B532CF2 /* UIViewController+eLBeePushBackController.m */; };
 /* End PBXBuildFile section */
 
@@ -48,10 +47,8 @@
 		0504C757178CF48B0005B314 /* coder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coder.jpg; sourceTree = "<group>"; };
 		0504C759178CF54C0005B314 /* vader.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vader.jpg; sourceTree = "<group>"; };
 		0504C75C178CF64B0005B314 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
-		39848090BD998FA60AE49EF5 /* UIView+Clone.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Clone.m"; sourceTree = "<group>"; };
 		3984836D41491E20AD75692D /* UIViewController+eLBeePushBackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+eLBeePushBackController.h"; sourceTree = "<group>"; };
 		398488A175BD0C830B532CF2 /* UIViewController+eLBeePushBackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+eLBeePushBackController.m"; sourceTree = "<group>"; };
-		39848D328360DD35B751F41A /* UIView+Clone.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIView+Clone.h"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -148,8 +145,6 @@
 		398485263C4BC2B4EECE50FE /* Classes */ = {
 			isa = PBXGroup;
 			children = (
-				39848D328360DD35B751F41A /* UIView+Clone.h */,
-				39848090BD998FA60AE49EF5 /* UIView+Clone.m */,
 				3984836D41491E20AD75692D /* UIViewController+eLBeePushBackController.h */,
 				398488A175BD0C830B532CF2 /* UIViewController+eLBeePushBackController.m */,
 			);
@@ -227,7 +222,6 @@
 			files = (
 				0504C73B178CEC040005B314 /* main.m in Sources */,
 				0504C73F178CEC040005B314 /* eLBeePushBackControllerAppDelegate.m in Sources */,
-				398481E95E71EB7A2AEBDDD5 /* UIView+Clone.m in Sources */,
 				398486E150A74D4B12CAE086 /* UIViewController+eLBeePushBackController.m in Sources */,
 				0504C753178CF0030005B314 /* MainViewController.m in Sources */,
 				0504C756178CF0160005B314 /* ModalViewController.m in Sources */,
