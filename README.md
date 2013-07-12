@@ -7,25 +7,22 @@ eLBeePushBackController
 
 ## About
 
-This is a simple UIViewController Category for creating a semi modal / push back transition.
+eLBeePushBackController us a simple, lightweight UIViewController Category for creating a semi modal / push back transition.  
 
-I built this category after trying to determine how to best refine [kentnguyen's](https://github.com/kentnguyen) [KNSemiModal](https://github.com/kentnguyen/KNSemiModalViewController) category. I was actually going to just make a few changes and then issue a pull request, but after having changed the code so heavily, I've decided to just release it as a spin-off of KNSemiModal instead.
+This code was originally a fork of [kentnguyen's](https://github.com/kentnguyen) [KNSemiModal](https://github.com/kentnguyen/KNSemiModalViewController) category.  
 
 ### Biggest Changes
 
-* Renamed it from KNSemiModal to eLBeePushBackController (ok, I know that is obvious...)
-* Renamed presentSemiViewController to be presentPushBackController to ensure we don't conflict with KNSemiModal should you use it in the same build
-* Refactored a lot of the animation code and split things out into more managiable chunks (@see getAnimationUsingTransformIdentity methods. These need to be combined into a single method though - @todo ;)
+* Refactored a lot of the animation code and split things out into more manageable chunks.
 * Added blocks and GCD to improve performance
-* I resize the initial "root uiview" of the callee controller rather than creating a screenshot. autoresizingMask is used instead to just shrink/manipulate the view (didn't feel I gained anything via screenshots)
-* Removed all objc runtime properties as they aren't exactly necessary
+* I replaced the screenshot resize for the push back animation transition with just a simple resizing of the main view.
+* Removed all objc runtime properties as they are not yet needed at this time
+* Overall, reduced the size of the build drastically, which also has added in a bit of a performance bump
+* Disabled user interaction to the background view for now - will probably just have it dismiss when that is tapped eventually.. 
 
-### Addition(s):
-* Created a UIView+Clone category for creating a weak-referenced clone of views. (This can easily be changed to be strong by just removing __weak)
 
 ### In Development:
 * I'm working on some new transition styles so that you can choose which transition to use
-* Created a helper method to define the percentage to shrink the pushback view
 
 ### Things I removed:
 * Removed "presentSemiView". Why? Because I never used it and only used this for controllers. I plan to add it back when I need it though ...
@@ -133,12 +130,6 @@ Finally, here is a quick example of how to use it.  Check out the example in the
 
 @end
 ```
-
-
-## Gotchas
-
-* UIViewController+eLBeePushBackController.h is where you can manipulate the sizes, tags, etc of the views. It is currently very limited. This will be removed soon with a more proper implementation. For now, it is what it is.
-* There is not much comments currently. This, too, should change soon enough.
 
 
 Thanks, hope you find this useful!!
