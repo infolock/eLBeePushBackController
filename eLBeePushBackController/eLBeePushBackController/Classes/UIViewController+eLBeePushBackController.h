@@ -7,7 +7,6 @@
 //
 
 #import <UIKit/UIKit.h>
-#import "UIView+Clone.h"
 
 typedef void(^eLBeePBCompletionBlock)(void);
 
