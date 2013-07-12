@@ -51,8 +51,8 @@
 -(void)dismissPushBackController:(UIViewController *)controller withCompletion:(eLBeePBCompletionBlock)completion {
 
     UIView *target = self.parentViewController.view;
-    UIView *__weak modal = [target.subviews objectAtIndex:target.subviews.count-1];
-    UIView *__weak overlay = [target.subviews objectAtIndex:target.subviews.count-2];
+    UIView *modal = [target.subviews objectAtIndex:target.subviews.count-1];
+    UIView *overlay = [target.subviews objectAtIndex:target.subviews.count-2];
 
     self.view.userInteractionEnabled = YES;
 
