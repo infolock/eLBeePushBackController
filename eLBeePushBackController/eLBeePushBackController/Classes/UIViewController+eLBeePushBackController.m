@@ -24,8 +24,8 @@
 // Performs the actual presentation transition
 -(void)presentPushBackController:(UIViewController *)controller withCompletion:(eLBeePBCompletionBlock)completion {
 
-    UIViewController *targetParentVC = self.parentViewController;
-    [targetParentVC addChildViewController:controller];
+    UIViewController *targetVC = self.parentViewController;
+    [targetVC addChildViewController:controller];
 
     self.view.tag = keLBeePBVCTagRootView;
     self.view.autoresizesSubviews = YES;
@@ -33,7 +33,7 @@
 
     [controller beginAppearanceTransition:YES animated:YES];
     [self transitionToModalView:controller.view withCompletion:^{
-        [controller didMoveToParentViewController:targetParentVC];
+        [controller didMoveToParentViewController:targetVC];
         [controller endAppearanceTransition];
         if(completion) {
             completion();
@@ -51,8 +51,8 @@
 -(void)dismissPushBackController:(UIViewController *)controller withCompletion:(eLBeePBCompletionBlock)completion {
 
     UIView *target = self.parentViewController.view;
-    UIView *modal = [target.subviews objectAtIndex:target.subviews.count-1];
-    UIView *overlay = [target.subviews objectAtIndex:target.subviews.count-2];
+    UIView *__weak modal = [target.subviews objectAtIndex:target.subviews.count-1];
+    UIView *__weak overlay = [target.subviews objectAtIndex:target.subviews.count-2];
 
     self.view.userInteractionEnabled = YES;
 
@@ -60,21 +60,28 @@
     [controller beginAppearanceTransition:NO animated:YES];
 
 
+    [self restoreViewWithCompletion:completion];
+
+    CGRect modalFrame = modal.frame;
+    modalFrame.origin = CGPointMake(0, target.bounds.size.height);
+
     [UIView animateWithDuration:0.4 animations:^{
-        modal.frame = CGRectMake(0, target.bounds.size.height, modal.frame.size.width, modal.frame.size.height);
+        modal.frame = modalFrame;
     } completion:^(BOOL finished) {
 
         [overlay removeFromSuperview];
         [modal removeFromSuperview];
 
         [controller removeFromParentViewController];
-
         if([controller respondsToSelector:@selector(endAppearanceTransition)]) {
             [controller endAppearanceTransition];
         }
+
+        if(completion) {
+            completion();
+        }
     }];
 
-    [self restoreViewWithCompletion:completion];
 }
 
 #pragma mark -
@@ -99,29 +106,36 @@
         [self addOverlayToTarget:target];
         [target addSubview:modalView];
 
-        __block UIView *currentView = self.view;
+        UIView *__weak currentView = self.view;
         __block CALayer *viewLayer = currentView.layer;
         [self animateViewUsingTransform3DIdentity:YES usingBlock:^(CAAnimation *caAnimation) {
+
+            dispatch_async(dispatch_get_main_queue(), ^{
+
                 [viewLayer addAnimation:caAnimation forKey:@"pushedBackAnimation"];
+
                 [UIView animateWithDuration:0.4 animations:^{
                     modalView.frame = modelViewFrame;
-                    currentView.alpha = 0.5;
                 } completion:^(BOOL finished) {
                     if(finished && completion) {
                         completion();
                     }
                 }];
+            });
         }];
     }
 }
 
 -(void)addOverlayToTarget:(UIView *)target {
+
     UIView *overlay = [[UIView alloc] initWithFrame:target.bounds];
     overlay.userInteractionEnabled = NO;
     overlay.backgroundColor = [UIColor blackColor];
     overlay.tag = keLBeePBVCTagOverlay;
     overlay.alpha = 0.5;
     overlay.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+
+    [target addSubview:overlay];
 }
 
 
@@ -133,17 +147,22 @@
 // This method is called to restore the root view controller where it belongs, and removes the cloned view from our site.
 -(void)restoreViewWithCompletion:(eLBeePBCompletionBlock)completion {
 
+    UIView *__weak view = self.view;
+    __block CALayer *layer = self.view.layer;
     [self animateViewUsingTransform3DIdentity:NO usingBlock:^(CAAnimation *caAnimation) {
 
-        [self.view.layer addAnimation:caAnimation forKey:@"bringForwardAnimation"];
-        [UIView animateWithDuration:0.4 animations:^{
-            self.view.alpha = 1;
-        } completion:^(BOOL finished) {
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [layer addAnimation:caAnimation forKey:@"bringForwardAnimation"];
+            [UIView animateWithDuration:0.4 animations:^{
+                view.alpha = 1;
+            } completion:^(BOOL finished) {
 
-            if(finished && completion) {
-                completion();
-            }
-        }];
+                if(finished && completion) {
+                    self.view.autoresizesSubviews = NO;
+                    completion();
+                }
+            }];
+        });
     }];
 }
 
