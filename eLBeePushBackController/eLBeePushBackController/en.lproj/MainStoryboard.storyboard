@@ -16,7 +16,7 @@
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="skG-bX-t3o">
                                 <color key="backgroundColor" red="0.1333333333" green="0.62352941179999999" blue="0.7725490196" alpha="1" colorSpace="deviceRGB"/>
                                 <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="DNo-eh-g2r"/>
+                                    <constraint firstAttribute="height" constant="44" id="exw-s1-S6c"/>
                                 </constraints>
                                 <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
                                 <state key="normal" title="Push">
@@ -27,12 +27,32 @@
                                     <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                                 </state>
                                 <connections>
-                                    <action selector="presentPBVCBtn:" destination="2" eventType="touchUpInside" id="WcT-6b-NMx"/>
+                                    <action selector="presentPushBackViewControllerBtn:" destination="2" eventType="touchUpInside" id="WcT-6b-NMx"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="EEP-cQ-l1y">
+                                <color key="backgroundColor" red="0.86274516580000005" green="0.26666668059999998" blue="0.231372565" alpha="1" colorSpace="deviceRGB"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="44" id="uAA-nE-baZ"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                                <state key="normal" title="Modal">
+                                    <color key="titleColor" red="0.97254901959999995" green="0.97254901959999995" blue="0.97254901959999995" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <state key="highlighted">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                                </state>
+                                <connections>
+                                    <action selector="presentPushBackModalViewBtn:" destination="2" eventType="touchUpInside" id="Bwp-xe-Zhr"/>
                                 </connections>
                             </button>
                         </subviews>
                         <color key="backgroundColor" red="0.58629047440000004" green="1" blue="1" alpha="1" colorSpace="calibratedRGB"/>
                         <constraints>
+                            <constraint firstItem="EEP-cQ-l1y" firstAttribute="leading" secondItem="3" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="EA6-CE-iLV"/>
+                            <constraint firstAttribute="trailing" secondItem="EEP-cQ-l1y" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="GYr-ir-VJ0"/>
+                            <constraint firstItem="EEP-cQ-l1y" firstAttribute="top" secondItem="skG-bX-t3o" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="J5v-gB-Whv"/>
                             <constraint firstItem="skG-bX-t3o" firstAttribute="top" secondItem="3" secondAttribute="top" constant="20" symbolic="YES" type="default" id="N8K-aC-q0E"/>
                             <constraint firstItem="IQe-72-R5G" firstAttribute="trailing" secondItem="3" secondAttribute="trailing" type="default" id="RJ4-Me-qQH"/>
                             <constraint firstItem="IQe-72-R5G" firstAttribute="leading" secondItem="3" secondAttribute="leading" type="default" id="UnZ-QA-2SK"/>
@@ -43,8 +63,55 @@
                         </constraints>
                     </view>
                     <navigationItem key="navigationItem" id="lnX-gT-yab"/>
+                    <connections>
+                        <outlet property="modalView" destination="V3N-hb-eR9" id="dij-Fi-Qf2"/>
+                    </connections>
                 </viewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="4" sceneMemberID="firstResponder"/>
+                <view contentMode="scaleToFill" id="V3N-hb-eR9">
+                    <rect key="frame" x="0.0" y="0.0" width="280" height="404"/>
+                    <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMaxY="YES"/>
+                    <subviews>
+                        <label opaque="NO" clipsSubviews="YES" userInteractionEnabled="NO" contentMode="left" text="Why Herro there!  I'm a modal." lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="Kxy-uP-vGl">
+                            <fontDescription key="fontDescription" type="system" pointSize="17"/>
+                            <color key="textColor" red="0.090196078430000007" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="deviceRGB"/>
+                            <nil key="highlightedColor"/>
+                        </label>
+                        <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="0uh-ea-smX">
+                            <color key="backgroundColor" red="0.090196078430000007" green="0.88235294119999996" blue="0.88235294119999996" alpha="1" colorSpace="deviceRGB"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="44" id="3hx-qo-rKL"/>
+                            </constraints>
+                            <fontDescription key="fontDescription" type="boldSystem" pointSize="15"/>
+                            <state key="normal" title="Dismiss">
+                                <color key="titleColor" red="0.62745100259999997" green="0.27450981740000002" blue="0.59607845540000004" alpha="1" colorSpace="deviceRGB"/>
+                                <color key="titleShadowColor" white="0.5" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <state key="highlighted">
+                                <color key="titleColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
+                            </state>
+                            <connections>
+                                <action selector="dismissModalViewBtn" destination="2" eventType="touchUpInside" id="lg4-SN-bfb"/>
+                            </connections>
+                        </button>
+                        <imageView opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleAspectFit" image="awesome_sauce.jpg" translatesAutoresizingMaskIntoConstraints="NO" id="wPc-Ae-9yy">
+                            <constraints>
+                                <constraint firstAttribute="height" constant="156" id="rY6-ne-1cL"/>
+                            </constraints>
+                        </imageView>
+                    </subviews>
+                    <color key="backgroundColor" red="0.62745100259999997" green="0.27450981740000002" blue="0.59607845540000004" alpha="1" colorSpace="deviceRGB"/>
+                    <constraints>
+                        <constraint firstItem="0uh-ea-smX" firstAttribute="leading" secondItem="V3N-hb-eR9" secondAttribute="leading" type="default" id="BO7-Oo-hDd"/>
+                        <constraint firstItem="Kxy-uP-vGl" firstAttribute="top" secondItem="wPc-Ae-9yy" secondAttribute="bottom" constant="8" symbolic="YES" type="default" id="LkY-Ws-Cdo"/>
+                        <constraint firstItem="wPc-Ae-9yy" firstAttribute="leading" secondItem="V3N-hb-eR9" secondAttribute="leading" constant="20" symbolic="YES" type="default" id="P3Q-Up-Vm5"/>
+                        <constraint firstItem="wPc-Ae-9yy" firstAttribute="top" secondItem="V3N-hb-eR9" secondAttribute="top" constant="20" symbolic="YES" type="default" id="Zqa-mM-WqO"/>
+                        <constraint firstAttribute="bottom" secondItem="0uh-ea-smX" secondAttribute="bottom" constant="56" id="c6A-ub-a4L"/>
+                        <constraint firstItem="Kxy-uP-vGl" firstAttribute="centerX" secondItem="0uh-ea-smX" secondAttribute="centerX" type="default" id="iLI-f4-cOe"/>
+                        <constraint firstAttribute="trailing" secondItem="wPc-Ae-9yy" secondAttribute="trailing" constant="20" symbolic="YES" type="default" id="k5a-sl-u3f"/>
+                        <constraint firstItem="0uh-ea-smX" firstAttribute="trailing" secondItem="V3N-hb-eR9" secondAttribute="trailing" type="default" id="wZu-dF-DPZ"/>
+                    </constraints>
+                </view>
             </objects>
             <point key="canvasLocation" x="433" y="162"/>
         </scene>
@@ -109,6 +176,7 @@
         </scene>
     </scenes>
     <resources>
+        <image name="awesome_sauce.jpg" width="400" height="263"/>
         <image name="coder.jpg" width="631" height="300"/>
         <image name="vader.jpg" width="338" height="348"/>
     </resources>
@@ -116,7 +184,9 @@
         <class className="MainViewController" superclassName="UIViewController">
             <source key="sourceIdentifier" type="project" relativePath="./Classes/MainViewController.h"/>
             <relationships>
-                <relationship kind="action" name="presentPBVCBtn:"/>
+                <relationship kind="action" name="presentPushBackModalViewBtn:"/>
+                <relationship kind="action" name="presentPushBackViewControllerBtn:"/>
+                <relationship kind="outlet" name="modalView" candidateClass="UIView"/>
             </relationships>
         </class>
         <class className="ModalViewController" superclassName="UIViewController">

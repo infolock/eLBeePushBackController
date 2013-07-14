@@ -11,12 +11,12 @@
 #import "UIViewController+eLBeePushBackController.h"
 
 @interface MainViewController() <ModalVCDelegate>
-
+@property (nonatomic, weak) IBOutlet UIView *modalView;
 @end
 
 @implementation MainViewController
 
--(IBAction)presentPBVCBtn:(id)sender {
+-(IBAction)presentPushBackViewControllerBtn:(id)sender {
     ModalViewController *controller = (ModalViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"ModalViewControllerSBID"];
     controller.delegate = self;  // This is not necessary - is good to just let your main view handle presenting/dismissing
 
@@ -30,6 +30,7 @@
     */
 }
 
+
 -(void)pushBackVCDelegateShouldDismissController:(ModalViewController *)controller {
 
     controller.delegate = nil;
@@ -42,4 +43,19 @@
          }];
      */
 }
+
+
+
+-(IBAction)presentPushBackModalViewBtn:(id)sender {
+    [self presentPushBackView:self.modalView withCompletion:^{
+        NSLog(@"Modal View was presented!");
+    }];
+}
+
+-(IBAction)dismissModalViewBtn {
+    [self dismissPushBackViewWithCompletion:^{
+       NSLog(@"Modal View was dismissed!");
+    }];
+}
+
 @end

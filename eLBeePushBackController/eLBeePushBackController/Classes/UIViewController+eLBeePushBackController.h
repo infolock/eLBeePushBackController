@@ -24,8 +24,11 @@ typedef NS_ENUM(NSInteger, keLBeePBVCTag) {
 };
 
 -(void)presentPushBackController:(UIViewController *)controller;
--(void)presentPushBackController:(UIViewController *)controller withCompletion:(eLBeePBCompletionBlock)completion;
-
 -(void)dismissPushBackController:(UIViewController *)controller;
+
+-(void)presentPushBackController:(UIViewController *)controller withCompletion:(eLBeePBCompletionBlock)completion;
 -(void)dismissPushBackController:(UIViewController *)controller withCompletion:(eLBeePBCompletionBlock)completion;
+
+-(void)presentPushBackView:(UIView *)modalView withCompletion:(eLBeePBCompletionBlock)completion;
+-(void)dismissPushBackViewWithCompletion:(eLBeePBCompletionBlock)completion;
 @end

@@ -22,6 +22,7 @@
 		0504C758178CF48B0005B314 /* coder.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0504C757178CF48B0005B314 /* coder.jpg */; };
 		0504C75A178CF54C0005B314 /* vader.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 0504C759178CF54C0005B314 /* vader.jpg */; };
 		0504C75D178CF64B0005B314 /* QuartzCore.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 0504C75C178CF64B0005B314 /* QuartzCore.framework */; };
+		05094B4C1793340800AFFB7D /* awesome_sauce.jpg in Resources */ = {isa = PBXBuildFile; fileRef = 05094B4B1793340800AFFB7D /* awesome_sauce.jpg */; };
 		398486E150A74D4B12CAE086 /* UIViewController+eLBeePushBackController.m in Sources */ = {isa = PBXBuildFile; fileRef = 398488A175BD0C830B532CF2 /* UIViewController+eLBeePushBackController.m */; };
 /* End PBXBuildFile section */
 
@@ -47,6 +48,7 @@
 		0504C757178CF48B0005B314 /* coder.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = coder.jpg; sourceTree = "<group>"; };
 		0504C759178CF54C0005B314 /* vader.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = vader.jpg; sourceTree = "<group>"; };
 		0504C75C178CF64B0005B314 /* QuartzCore.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = QuartzCore.framework; path = System/Library/Frameworks/QuartzCore.framework; sourceTree = SDKROOT; };
+		05094B4B1793340800AFFB7D /* awesome_sauce.jpg */ = {isa = PBXFileReference; lastKnownFileType = image.jpeg; path = awesome_sauce.jpg; sourceTree = "<group>"; };
 		3984836D41491E20AD75692D /* UIViewController+eLBeePushBackController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = "UIViewController+eLBeePushBackController.h"; sourceTree = "<group>"; };
 		398488A175BD0C830B532CF2 /* UIViewController+eLBeePushBackController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIViewController+eLBeePushBackController.m"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -125,6 +127,7 @@
 		0504C75B178CF5520005B314 /* Assets */ = {
 			isa = PBXGroup;
 			children = (
+				05094B4B1793340800AFFB7D /* awesome_sauce.jpg */,
 				0504C757178CF48B0005B314 /* coder.jpg */,
 				0504C759178CF54C0005B314 /* vader.jpg */,
 			);
@@ -210,6 +213,7 @@
 				0504C748178CEC040005B314 /* MainStoryboard.storyboard in Resources */,
 				0504C758178CF48B0005B314 /* coder.jpg in Resources */,
 				0504C75A178CF54C0005B314 /* vader.jpg in Resources */,
+				05094B4C1793340800AFFB7D /* awesome_sauce.jpg in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

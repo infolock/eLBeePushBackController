@@ -32,7 +32,7 @@
     self.view.userInteractionEnabled = NO;
 
     [controller beginAppearanceTransition:YES animated:YES];
-    [self transitionToModalView:controller.view withCompletion:^{
+    [self presentPushBackView:controller.view withCompletion:^{
         [controller didMoveToParentViewController:targetVC];
         [controller endAppearanceTransition];
         if(completion) {
@@ -41,55 +41,9 @@
     }];
 }
 
-#pragma mark dismissPushBack
-
--(void)dismissPushBackController:(UIViewController *)controller {
-    [self dismissPushBackController:controller withCompletion:nil];
-}
-
-// Performs the dismiss transition
--(void)dismissPushBackController:(UIViewController *)controller withCompletion:(eLBeePBCompletionBlock)completion {
-
-    UIView *target = self.parentViewController.view;
-    UIView *modal = [target.subviews objectAtIndex:target.subviews.count-1];
-    UIView *overlay = [target.subviews objectAtIndex:target.subviews.count-2];
-
-    self.view.userInteractionEnabled = YES;
-
-    [controller willMoveToParentViewController:nil];
-    [controller beginAppearanceTransition:NO animated:YES];
-
-
-    [self restoreViewWithCompletion:completion];
-
-    CGRect modalFrame = modal.frame;
-    modalFrame.origin = CGPointMake(0, target.bounds.size.height);
-
-    [UIView animateWithDuration:0.4 animations:^{
-        modal.frame = modalFrame;
-    } completion:^(BOOL finished) {
-
-        [overlay removeFromSuperview];
-        [modal removeFromSuperview];
-
-        [controller removeFromParentViewController];
-        if([controller respondsToSelector:@selector(endAppearanceTransition)]) {
-            [controller endAppearanceTransition];
-        }
-
-        if(completion) {
-            completion();
-        }
-    }];
-
-}
-
-#pragma mark -
-#pragma mark Private Methods
-#pragma mark -
 
 // Controls pushing the root view back
--(void)transitionToModalView:(UIView *)modalView withCompletion:(eLBeePBCompletionBlock)completion {
+-(void)presentPushBackView:(UIView *)modalView withCompletion:(eLBeePBCompletionBlock)completion {
 
     UIView *target = self.parentViewController.view;
 
@@ -126,23 +80,46 @@
     }
 }
 
--(void)addOverlayToTarget:(UIView *)target {
+#pragma mark dismissPushBack
 
-    UIView *overlay = [[UIView alloc] initWithFrame:target.bounds];
-    overlay.userInteractionEnabled = NO;
-    overlay.backgroundColor = [UIColor blackColor];
-    overlay.tag = keLBeePBVCTagOverlay;
-    overlay.alpha = 0.5;
-    overlay.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
-
-    [target addSubview:overlay];
+-(void)dismissPushBackController:(UIViewController *)controller {
+    [self dismissPushBackController:controller withCompletion:nil];
 }
 
+-(void)dismissPushBackController:(UIViewController *)controller withCompletion:(eLBeePBCompletionBlock)completion {
 
-#pragma mark -
-#pragma mark Animation Methods
-#pragma mark -
+    UIView *target = self.parentViewController.view;
+    UIView *modal = [target.subviews objectAtIndex:target.subviews.count-1];
+    UIView *overlay = [target.subviews objectAtIndex:target.subviews.count-2];
 
+    self.view.userInteractionEnabled = YES;
+
+    [controller willMoveToParentViewController:nil];
+    [controller beginAppearanceTransition:NO animated:YES];
+
+    [self restoreViewWithCompletion:completion];
+
+    CGRect modalFrame = modal.frame;
+    modalFrame.origin = CGPointMake(0, target.bounds.size.height);
+
+    [UIView animateWithDuration:0.4 animations:^{
+        modal.frame = modalFrame;
+    } completion:^(BOOL finished) {
+
+        [overlay removeFromSuperview];
+        [modal removeFromSuperview];
+
+        [controller removeFromParentViewController];
+        if([controller respondsToSelector:@selector(endAppearanceTransition)]) {
+            [controller endAppearanceTransition];
+        }
+
+        if(completion) {
+            completion();
+        }
+    }];
+
+}
 
 // This method is called to restore the root view controller where it belongs, and removes the cloned view from our site.
 -(void)restoreViewWithCompletion:(eLBeePBCompletionBlock)completion {
@@ -166,9 +143,100 @@
     }];
 }
 
+/*
+// Performs the dismiss transition
+-(void)dismissPushBackController:(UIViewController *)controller withCompletion:(eLBeePBCompletionBlock)completion {
+
+    NSArray *parentControllerSubView = self.parentViewController.view.subviews;
+
+    UIView *__weak target = self.parentViewController.view;
+    UIView *__weak view = self.view;
+    UIView *overlay = [target.subviews objectAtIndex:target.subviews.count-2];
+    UIView *modal = [parentControllerSubView objectAtIndex:parentControllerSubView.count-1];
+
+    self.view.userInteractionEnabled = YES;
+
+    [controller willMoveToParentViewController:nil];
+    [controller beginAppearanceTransition:NO animated:YES];
+
+    __block CALayer *layer = self.view.layer;
+    [self animateViewUsingTransform3DIdentity:NO usingBlock:^(CAAnimation *caAnimation) {
+
+        dispatch_async(dispatch_get_main_queue(), ^{
+            [layer addAnimation:caAnimation forKey:@"bringForwardAnimation"];
+            [UIView animateWithDuration:0.4 animations:^{
+                view.alpha = 1;
+            } completion:^(BOOL finished) {
+
+                if(finished && completion) {
+                    self.view.autoresizesSubviews = NO;
+                    CGRect modalFrame = modal.frame;
+                    modalFrame.origin = CGPointMake(0, target.bounds.size.height);
+
+                    [UIView animateWithDuration:0.4 animations:^{
+                        modal.frame = modalFrame;
+                    } completion:^(BOOL finished) {
+
+                        [overlay removeFromSuperview];
+                        [modal removeFromSuperview];
+
+                        [controller removeFromParentViewController];
+                        if([controller respondsToSelector:@selector(endAppearanceTransition)]) {
+                            [controller endAppearanceTransition];
+                        }
+
+                        if(completion) {
+                            completion();
+                        }
+                    }];
+
+
+                }
+            }];
+        });
+    }];
+}
+
+*/
+
+-(void)dismissPushBackViewWithCompletion:(eLBeePBCompletionBlock)completion {
+    UIView *modal = [self.parentViewController.view viewWithTag:keLBeePBVCTagPresentedView];
+    __block UIViewController *controller = (UIViewController *)[self parentControllerForView:modal];
+    if(controller == nil) {
+        return;
+    }
+    [self dismissPushBackController:controller withCompletion:completion];
+}
+
+-(id)parentControllerForView:(UIView *)view {
+    id nextResponder = [view nextResponder];
+    if ([nextResponder isKindOfClass:[UIViewController class]]) {
+        return nextResponder;
+    } else if ([nextResponder isKindOfClass:[UIView class]]) {
+        return [self parentControllerForView:nextResponder];
+    } else {
+        return nil;
+    }
+}
+
 #pragma mark -
+#pragma mark Private Methods
+#pragma mark -
+
+
+-(void)addOverlayToTarget:(UIView *)target {
+
+    UIView *overlay = [[UIView alloc] initWithFrame:target.bounds];
+    overlay.userInteractionEnabled = NO;
+    overlay.backgroundColor = [UIColor blackColor];
+    overlay.tag = keLBeePBVCTagOverlay;
+    overlay.alpha = 0.5;
+    overlay.autoresizingMask = UIViewAutoresizingFlexibleTopMargin | UIViewAutoresizingFlexibleWidth;
+
+    [target addSubview:overlay];
+}
+
 #pragma mark Transform Animation Methods
-#pragma mark -
 
 // Determines how we will be manipulating the cloned root view and what sort of transition we'll be performing
 -(void)animateViewUsingTransform3DIdentity:(BOOL)transform3DIdentity usingBlock:(void(^)(CAAnimation *caAnimation))block {
