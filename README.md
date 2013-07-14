@@ -49,6 +49,14 @@ This code was originally a fork of [kentnguyen's](https://github.com/kentnguyen)
 * some of the animation routines
 * the overlay view
 
+
+### Things that I did not (or have not yet) added out of laziness
+* There is not a paramater to define where the presented view should end up at.  Instead, you'll have to either add it, or update the keLBeeSizePresentedViewHeight value (all views will then end up with this height)
+* There is no scaling of the view.  This is easy to add and is something I'll be adding soon enough (I need it myself).
+* There is only one transition sequence for the modal popup: bottom to top (show), top to bottom (hide).  I'll be adding more as I need them myself.
+* Logic to dismiss the modal when tapping the background is not there yet - in the works
+* I'm sure there is some other stuff too, so feel free to make a suggestion or add it and submit a pull request!
+
 Finally, here is a quick demo of how to use it (this is alsoincluded project under, Example).  
 
 It includes 2 buttons: a Push controller button and a Modal button.
