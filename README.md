@@ -4,6 +4,14 @@ eLBeePushBackController
 ![ScreenShot 1](screenshot.png)
 
 
+Update (July 14, 2013): Added a push/dismiss Modal view example.
+Note: The modal view is actually hidden from the main view.  To view it, open the storyboard, click the main view 
+controller, and you'll see a white box between the first responder (red cube) and Exit segue (green exit square).  
+
+Just drag the white box (which is the view) onto the viewcontroller to edit/view it.  its up to you if you want to put 
+it back (you can just drag it from interface builder to the bottom bar and it will automatically hide).
+
+
 ## About
 
 eLBeePushBackController us a simple, lightweight UIViewController Category for creating a semi modal / push back transition.  
@@ -41,7 +49,17 @@ This code was originally a fork of [kentnguyen's](https://github.com/kentnguyen)
 * some of the animation routines
 * the overlay view
 
-Finally, here is a quick example of how to use it.  Check out the example in the included project to see it live.
+
+### Things that I did not (or have not yet) added out of laziness
+* There is not a paramater to define where the presented view should end up at.  Instead, you'll have to either add it, or update the keLBeeSizePresentedViewHeight value (all views will then end up with this height)
+* There is no scaling of the view.  This is easy to add and is something I'll be adding soon enough (I need it myself).
+* There is only one transition sequence for the modal popup: bottom to top (show), top to bottom (hide).  I'll be adding more as I need them myself.
+* Logic to dismiss the modal when tapping the background is not there yet - in the works
+* I'm sure there is some other stuff too, so feel free to make a suggestion or add it and submit a pull request!
+
+Finally, here is a quick demo of how to use it (this is alsoincluded project under, Example).  
+
+It includes 2 buttons: a Push controller button and a Modal button.
 
 ## Example
 
@@ -54,11 +72,13 @@ Finally, here is a quick example of how to use it.  Check out the example in the
 
 @interface MainViewController() <ModalVCDelegate>
 
+@property (nonatomic, weak) IBOutlet UIView *modalView;
+
 @end
 
 @implementation MainViewController
 
--(IBAction)presentPBVCBtn:(id)sender {
+-(IBAction)pushBackVCDelegateShouldDismissController:(id)sender {
     ModalViewController *controller = (ModalViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"ModalViewControllerSBID"];
     controller.delegate = self;  // This is not necessary - is good to just let your main view handle presenting/dismissing
 
@@ -84,9 +104,22 @@ Finally, here is a quick example of how to use it.  Check out the example in the
      }];
      */
 }
+
+
+// Modal View Example:
+-(IBAction)presentPushBackModalViewBtn:(id)sender {
+    [self presentPushBackView:self.modalView withCompletion:^{
+        NSLog(@"Modal View was presented!");
+    }];
+}
+
+-(IBAction)dismissModalViewBtn {
+    [self dismissPushBackViewWithCompletion:^{
+       NSLog(@"Modal View was dismissed!");
+    }];
+}
 @end
 
-@end
 ```
 
 #### ModalViewController.h
