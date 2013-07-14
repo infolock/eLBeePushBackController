@@ -41,7 +41,6 @@
     }];
 }
 
-
 // Controls pushing the root view back
 -(void)presentPushBackView:(UIView *)modalView withCompletion:(eLBeePBCompletionBlock)completion {
 
@@ -142,62 +141,6 @@
         });
     }];
 }
-
-/*
-// Performs the dismiss transition
--(void)dismissPushBackController:(UIViewController *)controller withCompletion:(eLBeePBCompletionBlock)completion {
-
-    NSArray *parentControllerSubView = self.parentViewController.view.subviews;
-
-    UIView *__weak target = self.parentViewController.view;
-    UIView *__weak view = self.view;
-    UIView *overlay = [target.subviews objectAtIndex:target.subviews.count-2];
-    UIView *modal = [parentControllerSubView objectAtIndex:parentControllerSubView.count-1];
-
-    self.view.userInteractionEnabled = YES;
-
-    [controller willMoveToParentViewController:nil];
-    [controller beginAppearanceTransition:NO animated:YES];
-
-    __block CALayer *layer = self.view.layer;
-    [self animateViewUsingTransform3DIdentity:NO usingBlock:^(CAAnimation *caAnimation) {
-
-        dispatch_async(dispatch_get_main_queue(), ^{
-            [layer addAnimation:caAnimation forKey:@"bringForwardAnimation"];
-            [UIView animateWithDuration:0.4 animations:^{
-                view.alpha = 1;
-            } completion:^(BOOL finished) {
-
-                if(finished && completion) {
-                    self.view.autoresizesSubviews = NO;
-                    CGRect modalFrame = modal.frame;
-                    modalFrame.origin = CGPointMake(0, target.bounds.size.height);
-
-                    [UIView animateWithDuration:0.4 animations:^{
-                        modal.frame = modalFrame;
-                    } completion:^(BOOL finished) {
-
-                        [overlay removeFromSuperview];
-                        [modal removeFromSuperview];
-
-                        [controller removeFromParentViewController];
-                        if([controller respondsToSelector:@selector(endAppearanceTransition)]) {
-                            [controller endAppearanceTransition];
-                        }
-
-                        if(completion) {
-                            completion();
-                        }
-                    }];
-
-
-                }
-            }];
-        });
-    }];
-}
-
-*/
 
 -(void)dismissPushBackViewWithCompletion:(eLBeePBCompletionBlock)completion {
     UIView *modal = [self.parentViewController.view viewWithTag:keLBeePBVCTagPresentedView];

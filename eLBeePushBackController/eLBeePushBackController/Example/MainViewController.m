@@ -11,10 +11,20 @@
 #import "UIViewController+eLBeePushBackController.h"
 
 @interface MainViewController() <ModalVCDelegate>
+
 @property (nonatomic, weak) IBOutlet UIView *modalView;
+@property (nonatomic, weak) IBOutlet UIScrollView *scrollView;
+
 @end
 
 @implementation MainViewController
+
+
+-(void)viewDidAppear:(BOOL)animated {
+    [super viewDidAppear:animated];
+    [self.scrollView setContentSize:CGSizeMake(648, self.scrollView.frame.size.height)];
+}
+
 
 -(IBAction)presentPushBackViewControllerBtn:(id)sender {
     ModalViewController *controller = (ModalViewController *)[self.storyboard instantiateViewControllerWithIdentifier:@"ModalViewControllerSBID"];
