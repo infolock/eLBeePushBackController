@@ -3,7 +3,7 @@ eLBeePushBackController
 
 ![Unmaintained](https://img.shields.io/badge/%E2%9A%A0-unmaintained-red.svg?style=flat)
 
-eLBeePushBackController is a simple, lightweight UIViewController Category for creating a semi modal / push back transition.
+A simple, lightweight UIViewController Category for creating a semi modal / push back transition.
 
 This code was originally a fork of [kentnguyen's](https://github.com/kentnguyen) [KNSemiModal](https://github.com/kentnguyen/KNSemiModalViewController) category.  
 
