@@ -3,6 +3,11 @@ eLBeePushBackController
 
 ![Unmaintained](https://img.shields.io/badge/%E2%9A%A0-unmaintained-red.svg?style=flat)
 
+## About
+
+eLBeePushBackController us a simple, lightweight UIViewController Category for creating a semi modal / push back transition.  
+
+This code was originally a fork of [kentnguyen's](https://github.com/kentnguyen) [KNSemiModal](https://github.com/kentnguyen/KNSemiModalViewController) category.  
 
 ![ScreenShot 1](screenshot.png)
 
@@ -14,12 +19,6 @@ controller, and you'll see a white box between the first responder (red cube) an
 Just drag the white box (which is the view) onto the viewcontroller to edit/view it.  its up to you if you want to put 
 it back (you can just drag it from interface builder to the bottom bar and it will automatically hide).
 
-
-## About
-
-eLBeePushBackController us a simple, lightweight UIViewController Category for creating a semi modal / push back transition.  
-
-This code was originally a fork of [kentnguyen's](https://github.com/kentnguyen) [KNSemiModal](https://github.com/kentnguyen/KNSemiModalViewController) category.  
 
 ### Biggest Changes
 
